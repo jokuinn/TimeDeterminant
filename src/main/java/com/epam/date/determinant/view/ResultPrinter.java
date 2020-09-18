@@ -2,8 +2,6 @@ package com.epam.date.determinant.view;
 
 public interface ResultPrinter {
 
-    void printHours(int number);
-    void printMinutes(int number);
-    void printSeconds(int number);
+    void print(int number1, int number2, int number3);
 
 }

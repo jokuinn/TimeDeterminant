@@ -3,8 +3,7 @@ package com.epam.date.determinant;
 import com.epam.date.determinant.data.ConsoleDataAcquirer;
 import com.epam.date.determinant.data.DataAcquirer;
 import com.epam.date.determinant.logic.Calculator;
-import com.epam.date.determinant.view.ConsoleResultPrint;
-import com.epam.date.determinant.view.ResultPrinter;
+import com.epam.date.determinant.view.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,9 +18,16 @@ public class Main {
         int seconds = calculator.getSeconds(number, hours, minutes);
 
         // вывести
-        ResultPrinter printer = new ConsoleResultPrint();
-        printer.printHours(hours);
-        printer.printMinutes(minutes);
-        printer.printSeconds(seconds);
+        VariantOfResultPrinterFactory firstVariantOfResultPrinterFactory = new FirstVariantOfResultPrinterFactory();
+        ResultPrinter firstVariantResultPrinter = firstVariantOfResultPrinterFactory.createVariant();
+        firstVariantResultPrinter.print(hours, minutes, seconds);
+
+        VariantOfResultPrinterFactory secondVariantOfResultPrinterFactory = new SecondVariantOfResultPrinterFactory();
+        ResultPrinter secondVariantResultPrinter = secondVariantOfResultPrinterFactory.createVariant();
+        secondVariantResultPrinter.print(hours, minutes, seconds);
+
+
+
     }
+
 }
