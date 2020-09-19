@@ -18,16 +18,23 @@ public class Main {
         int seconds = calculator.getSeconds(number, hours, minutes);
 
         // вывести
-        VariantOfResultPrinterFactory firstVariantOfResultPrinterFactory = new FirstVariantOfResultPrinterFactory();
-        ResultPrinter firstVariantResultPrinter = firstVariantOfResultPrinterFactory.createVariant();
-        firstVariantResultPrinter.print(hours, minutes, seconds);
-
-        VariantOfResultPrinterFactory secondVariantOfResultPrinterFactory = new SecondVariantOfResultPrinterFactory();
-        ResultPrinter secondVariantResultPrinter = secondVariantOfResultPrinterFactory.createVariant();
-        secondVariantResultPrinter.print(hours, minutes, seconds);
+        VariantOfResultPrinterFactory variantOfResultPrinterFactory = chooseVariantOfResultPrinter(2);
+        ResultPrinter variantResultPrinter = variantOfResultPrinterFactory.createVariant();
+        variantResultPrinter.print(hours, minutes, seconds);
 
 
 
     }
 
+    static VariantOfResultPrinterFactory chooseVariantOfResultPrinter(int choose){
+        if (choose == 1) {
+            return new FirstVariantOfResultPrinterFactory();
+        }
+        else if (choose == 2) {
+            return new SecondVariantOfResultPrinterFactory();
+        }
+        else {
+            throw new RuntimeException(choose + " - It's uncorrect choose");
+        }
+    }
 }
